@@ -8,5 +8,10 @@
  */
 namespace Adteam\Core\Powerbi;
 
-class Powerbi{ 
+use Zend\ServiceManager\ServiceManager;
+
+class Powerbi{     
+    public function __construct(ServiceManager $service) {
+        
+    }
 }
