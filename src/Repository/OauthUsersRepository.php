@@ -20,7 +20,7 @@ class OauthUsersRepository extends EntityRepository{
     {
         $items = [];
         $result = $this->createQueryBuilder('T')
-            ->select('T.username as Usuario,T.firstName as Nombre,T.email as '.
+            ->select('T.id,T.username as Usuario,T.firstName as Nombre,T.email as '.
                     'EMail,T.lastName as ApellidoPaterno,T.surname as '.
                     'ApellidoMaterno,R.role as Perfil,T.enabled as Estatus,A.'.
                     'street,A.extNumber as extNumber,A.intNumber as intNumber,'.
@@ -42,9 +42,9 @@ class OauthUsersRepository extends EntityRepository{
     
     private function setEntities($item)
     {
-        $cedis = $this->getCedis($item['usercedisId']);
-        
+        $cedis = $this->getCedis($item['usercedisId']);        
         return [
+            'id'=>$item['id'],
             'Usuarios'=>$item['Usuario'],
             'Nombre'=>$item['Nombre'],
             'E-mail'=>$item['EMail'],
