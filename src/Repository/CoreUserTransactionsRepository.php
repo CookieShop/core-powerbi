@@ -42,6 +42,7 @@ class CoreUserTransactionsRepository extends EntityRepository{
         $canjeados = $this->getAmoutByType($item['userId']);
         $extras = $this->getAmoutByType($item['userId'], 'extra');
         return [
+            'id'=>$item['userId'],
             'Usuarios'=>$item['Usuario'],
             'Nombre'=>$item['Nombre'],
             'Estatus'=>$item['Estatus'],

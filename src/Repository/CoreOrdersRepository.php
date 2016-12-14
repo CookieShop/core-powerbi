@@ -21,7 +21,7 @@ class CoreOrdersRepository extends EntityRepository{
     {
         $items = [];
         $result = $this->createQueryBuilder('T')
-            ->select('T.id as OrderId, T.deletedAt,T.createdAt,R.displayName,'.
+            ->select('R.id as userId,T.id as OrderId, T.deletedAt,T.createdAt,R.displayName,'.
                     'R.username,R.enabled,C.sku,C.title,C.quantity,C.price,'.
                     'C.realPrice,A.street,A.extNumber,A.intNumber,A.location,'.
                     'A.reference,A.city,A.state,A.zipCode,E.id as orderCedisId')
@@ -46,6 +46,7 @@ class CoreOrdersRepository extends EntityRepository{
     {
         $cedis = $this->getCedis($item['orderCedisId']);
         return [
+            'id'=>$item['userId'],
             'No. de canje'=>$item['OrderId'],
             'Estatus del pedido'=>is_null($item['deletedAt'])?'activo':'cancelado',
             'Fecha de canje'=>  $this->formatObjectDateTime($item['createdAt']),
