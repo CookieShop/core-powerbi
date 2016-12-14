@@ -27,7 +27,7 @@ class OauthUsersRepository extends EntityRepository{
                     ' A.location as Colonia, A.reference as reference,A.city '.
                     'as ciudad,A.state as estado,A.zipCode as CP, T.telephone1 '.
                     'as telefono,T.mobile as celular,T.createdAt as fechadere'.
-                    'gistro,C.id as usercedisId')
+                    'gistro,C.id as usercedisId,T.modifiedAt as ultimaVisita')
             ->innerJoin('T.role', 'R')              
             ->leftJoin('Adteam\Core\Powerbi\Entity\CoreUserAddresses',
                     'A', \Doctrine\ORM\Query\Expr\Join::WITH, 'A.user = T.id') 
@@ -66,7 +66,7 @@ class OauthUsersRepository extends EntityRepository{
             'Teléfono'=>$item['telefono'],
             'Celular'=>$item['celular'],
             'Fecha de registro'=>  $this->formatObjectDateTime($item['fechaderegistro']),
-            'Última visita'=>'',
+            'Última visita'=>$this->formatObjectDateTime($item['ultimaVisita']),
             'Visitas'=>'',
         ];
     }
