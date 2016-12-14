@@ -22,7 +22,7 @@ class OauthUsersRepository extends EntityRepository{
         $result = $this->createQueryBuilder('T')
             ->select('T.id,T.username as Usuario,T.firstName as Nombre,T.email as '.
                     'EMail,T.lastName as ApellidoPaterno,T.surname as '.
-                    'ApellidoMaterno,R.role as Perfil,T.enabled as Estatus,A.'.
+                    'ApellidoMaterno,R.role as Perfil,T.enabled as Estatus,T.profileFulfilled as profileFulfilled,A.'.
                     'street,A.extNumber as extNumber,A.intNumber as intNumber,'.
                     ' A.location as Colonia, A.reference as reference,A.city '.
                     'as ciudad,A.state as estado,A.zipCode as CP, T.telephone1 '.
@@ -52,6 +52,7 @@ class OauthUsersRepository extends EntityRepository{
             'Apellido Materno'=>$item['ApellidoMaterno'],
             'Perfil'=>$item['Perfil'],
             'Estatus'=>$item['Estatus'],
+            'profileFulfilled'=>$item['profileFulfilled'],
             'Calle'=>$item['street'],
             '* ID Dealer/Cedis'=>$cedis['cedisId'],
             '* Nombre Dealer/Cedis'=>$cedis['namesCedis'],
