@@ -66,7 +66,7 @@ class OauthUsersRepository extends EntityRepository{
             'Teléfono'=>$item['telefono'],
             'Celular'=>$item['celular'],
             'Fecha de registro'=>  $this->formatObjectDateTime($item['fechaderegistro']),
-            'Última visita'=>$this->formatObjectDateTime($item['ultimaVisita']),
+            'Última visita'=>is_null($item['ultimaVisita'])?'':$this->formatObjectDateTime($item['ultimaVisita']),
             'Visitas'=>'',
         ];
     }
@@ -79,11 +79,8 @@ class OauthUsersRepository extends EntityRepository{
      */
     private function formatObjectDateTime(\DateTime $datetime,$format='d-m-Y H:i:s')
     {
-        if(!is_null($datetime)){
-            $datetime->setTimezone(new \DateTimeZone('America/Mexico_City'));
-            return $datetime->format($format);            
-        }
-        return '';
+        $datetime->setTimezone(new \DateTimeZone('America/Mexico_City'));
+        return $datetime->format($format);   
     }  
     
     private function getCedis($id)
