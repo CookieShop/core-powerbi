@@ -79,8 +79,11 @@ class OauthUsersRepository extends EntityRepository{
      */
     private function formatObjectDateTime(\DateTime $datetime,$format='d-m-Y H:i:s')
     {
-        $datetime->setTimezone(new \DateTimeZone('America/Mexico_City'));
-        return $datetime->format($format);
+        if(!is_null($datetime)){
+            $datetime->setTimezone(new \DateTimeZone('America/Mexico_City'));
+            return $datetime->format($format);            
+        }
+        return '';
     }  
     
     private function getCedis($id)
